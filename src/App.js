@@ -2,18 +2,31 @@ import React from 'react'
 import { Link, Route } from 'wouter'
 
 import './App.css'
-import ListOfGifs from './components/ListOfGifs'
+import Home from 'pages/Home'
+import SearchResults from 'pages/SearchResults'
+import Detail from 'pages/Detail'
+import StaticContext from 'context/Context'
+import { GifsContextProvider } from 'context/GifsContext'
 
 export default function App() {
   return (
-    <div className='App'>
-      <section className='App-content'>
-        <h1>APP</h1>
-        <Link to='/gif/matrix'>Matrix</Link>
-        <Link to='/gif/goku'>Goku</Link>
-        <Link to='/gif/panda'>Pandas</Link>
-        <Route path='/gif/:keyword' component={ListOfGifs} />
-      </section>
-    </div>
+    <StaticContext.Provider value={{ name: 'Raul', suscribeteAlCanal: true }}>
+      <div className='App'>
+        <header>
+          <Link href='/'>
+            <figure className='App-logo'>
+              <img src='/Logo.png' alt='Gify Logo' />
+            </figure>
+          </Link>
+        </header>
+        <section className='App-content'>
+          <GifsContextProvider>
+            <Route path='/' component={Home} />
+            <Route path='/search/:keyword' component={SearchResults} />
+            <Route path='/gif/:id' component={Detail} />
+          </GifsContextProvider>
+        </section>
+      </div>
+    </StaticContext.Provider>
   )
 }

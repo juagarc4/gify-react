@@ -1,0 +1,34 @@
+:root {
+  --results-columns: 2;
+}
+
+.list-of-gifs {
+  column-count: var(--results-columns);
+  column-gap: 0.5em;
+  min-height: 100vh;
+}
+
+.list-of-gifs-item {
+  -webkit-column-break-inside: avoid; /* Chrome, Safari, Opera */
+  page-break-inside: avoid; /* Firefox */
+  break-inside: avoid; /* IE 10+ */
+  background-color: #eee;
+  display: inline-block;
+  width: 100%;
+}
+
+@media screen and (min-width: 600px) {
+  :root {
+    --results-columns: 3;
+  }
+}
+@media screen and (min-width: 800px) {
+  :root {
+    --results-columns: 4;
+  }
+}
+@media screen and (min-width: 1200px) {
+  :root {
+    --results-columns: 5;
+  }
+}
