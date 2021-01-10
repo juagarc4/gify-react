@@ -11,8 +11,6 @@ export default function SearchResults({ params }) {
   const externalRef = useRef()
   const { isNearScreen } = useNearScreen({ externalRef: loading ? null : externalRef, once: false })
 
-  // const handleNextPage = () => setPage((prevPage) => prevPage + 1)
-
   const debounceHandleNextPage = useCallback(
     debounce(() => setPage((prevPage) => prevPage + 1), 1000),
     [setPage]
