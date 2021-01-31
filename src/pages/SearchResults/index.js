@@ -12,14 +12,12 @@ export default function SearchResults({ params }) {
   const { isNearScreen } = useNearScreen({ externalRef: loading ? null : externalRef, once: false })
 
   const debounceHandleNextPage = useCallback(
-    debounce(() => setPage((prevPage) => prevPage + 1), 1000),
+    debounce(() => setPage((prevPage) => prevPage + 1), 200),
     [setPage]
   )
 
   useEffect(
     function () {
-      console.log(isNearScreen)
-
       if (isNearScreen) debounceHandleNextPage()
     },
     [debounceHandleNextPage, isNearScreen]

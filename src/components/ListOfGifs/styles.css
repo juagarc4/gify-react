@@ -4,6 +4,7 @@
   grid-template-rows: min-content; /*masonry in nigthy build in FF*/
   gap: 0 16px;
   min-height: 100vh;
+  align-items: center;
 }
 
 .list-of-gifs-item {
