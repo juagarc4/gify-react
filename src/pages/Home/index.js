@@ -6,8 +6,8 @@ import TrendingTerms from 'components/TrendingTerms'
 import SearchForm from 'components/SearchForm'
 
 export default function Home() {
-  const [pushLocation] = useLocation()
-  const { gifs } = useGifs()
+  const [path, pushLocation] = useLocation()
+  const { loading, gifs } = useGifs()
 
   const handleSubmit = useCallback(
     ({ keyword }) => {
