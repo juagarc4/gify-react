@@ -11,6 +11,7 @@ export default function SearchResults({ params }) {
   const externalRef = useRef()
   const { isNearScreen } = useNearScreen({ externalRef: loading ? null : externalRef, once: false })
 
+  // eslint-disable-next-line
   const debounceHandleNextPage = useCallback(
     debounce(() => setPage((prevPage) => prevPage + 1), 200),
     [setPage]
