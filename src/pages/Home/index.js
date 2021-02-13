@@ -23,6 +23,11 @@ export default function Home() {
         <title>Home | Giffy</title>
         <meta name='description' content='Gif searcher done with React' />
         <meta name='rating' content='General' />
+        <link
+          rel='canonical'
+          content='https://gify-react-git-develop.raulgarciacanet.vercel.app
+'
+        />
       </Helmet>
       <SearchForm onSubmit={handleSubmit} />
       <div className='App-wrapper'>
