@@ -1,5 +1,7 @@
 import React, { useRef, useEffect, useCallback } from 'react'
+import { Helmet } from 'react-helmet'
 import debounce from 'just-debounce-it'
+
 import Spinner from 'components/Spinner'
 import ListOfGifs from 'components/ListOfGifs'
 import { useGifs } from 'hooks/useGifs'
@@ -10,6 +12,7 @@ export default function SearchResults({ params }) {
   const { loading, gifs, setPage } = useGifs({ keyword })
   const externalRef = useRef()
   const { isNearScreen } = useNearScreen({ externalRef: loading ? null : externalRef, once: false })
+  const title = gifs.length > 0 ? `${gifs.length} results for ${keyword}` : `No results found for ${keyword}`
 
   // eslint-disable-next-line
   const debounceHandleNextPage = useCallback(
@@ -29,9 +32,16 @@ export default function SearchResults({ params }) {
         <Spinner />
       ) : (
         <>
-          <h3 className='App-title'>{decodeURI(keyword)}</h3>
-          <ListOfGifs gifs={gifs} />
-          <div id='visor' ref={externalRef}></div>
+          <Helmet>
+            <title>{title}</title>
+            <meta name='description' content={title} />
+            <meta name='rating' content='General' />
+          </Helmet>
+          <div className='App-wrapper'>
+            <h3 className='App-title'>{decodeURI(keyword)}</h3>
+            <ListOfGifs gifs={gifs} />
+            <div id='visor' ref={externalRef}></div>
+          </div>
         </>
       )}
     </>
