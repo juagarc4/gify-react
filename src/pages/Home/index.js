@@ -1,5 +1,4 @@
-import React, { useCallback } from 'react'
-import { useLocation } from 'wouter'
+import React from 'react'
 import { Helmet } from 'react-helmet'
 import { useGifs } from 'hooks/useGifs'
 import ListOfGifs from 'components/ListOfGifs'
@@ -7,15 +6,7 @@ import TrendingTerms from 'components/TrendingTerms'
 import SearchForm from 'components/SearchForm'
 
 export default function Home() {
-  const [pushLocation] = useLocation()
   const { gifs } = useGifs()
-
-  const handleSubmit = useCallback(
-    ({ keyword }) => {
-      pushLocation(`/search/${keyword}`)
-    },
-    [pushLocation]
-  )
 
   return (
     <>
@@ -29,7 +20,9 @@ export default function Home() {
 '
         />
       </Helmet>
-      <SearchForm onSubmit={handleSubmit} />
+      <header className='o-header'>
+        <SearchForm />
+      </header>
       <div className='App-wrapper'>
         <div className='App-main'>
           <div className='App-results'>
